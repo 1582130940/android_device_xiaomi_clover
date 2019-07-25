@@ -2977,6 +2977,7 @@ void *QCamera3PostProcessor::dataProcessRoutine(void *data)
             pme->m_inputFWKPPQ.init();
             pme->m_inputMultiReprocQ.init();
             pme->m_inputMetaQ.init();
+            pme->m_jpegSettingsQ.init();
             if(sync)
             {
                 cam_sem_post(&cmdThread->sync_sem);
