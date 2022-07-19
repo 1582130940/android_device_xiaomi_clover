@@ -228,6 +228,7 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
 
 PRODUCT_PACKAGES += \
+    fstab.qcom \
     init.msm.usb.configfs.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
