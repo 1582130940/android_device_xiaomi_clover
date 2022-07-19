@@ -168,12 +168,49 @@ ALL_DEFAULT_INSTALLED_MODULES += \
     $(RFS_MSM_SLPI_SYMLINKS) \
     $(RFS_MSM_TN_SYMLINKS)
 
-EGL_SYMLINK := $(TARGET_OUT_VENDOR)/lib/libGLESv2_adreno.so
+EGL_SYMLINK := $(TARGET_OUT_VENDOR)/lib/libEGL_adreno.so
 $(EGL_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating EGL symlink: $@"
 	@mkdir -p $(dir $@)
 	$(hide) ln -sf egl/$(notdir $@) $@
 
-ALL_DEFAULT_INSTALLED_MODULES += $(EGL_SYMLINK)
+GLESv2_SYMLINK := $(TARGET_OUT_VENDOR)/lib/libGLESv2_adreno.so
+$(GLESv2_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating GLESv2 symlink: $@"
+	@mkdir -p $(dir $@)
+	$(hide) ln -sf egl/$(notdir $@) $@
+
+Q3DTOOLS_SYMLINK := $(TARGET_OUT_VENDOR)/lib/libq3dtools_adreno.so
+$(Q3DTOOLS_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating Q3D Tools symlink: $@"
+	@mkdir -p $(dir $@)
+	$(hide) ln -sf egl/$(notdir $@) $@
+
+EGL_64_SYMLINK := $(TARGET_OUT_VENDOR)/lib64/libEGL_adreno.so
+$(EGL_64_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating 64-bit EGL symlink: $@"
+	@mkdir -p $(dir $@)
+	$(hide) ln -sf egl/$(notdir $@) $@
+
+GLESv2_64_SYMLINK := $(TARGET_OUT_VENDOR)/lib64/libGLESv2_adreno.so
+$(GLESv2_64_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating 64-bit GLESv2 symlink: $@"
+	@mkdir -p $(dir $@)
+	$(hide) ln -sf egl/$(notdir $@) $@
+
+Q3DTOOLS_64_SYMLINK := $(TARGET_OUT_VENDOR)/lib64/libq3dtools_adreno.so
+$(Q3DTOOLS_64_SYMLINK): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating 64-bit Q3DTools symlink: $@"
+	@mkdir -p $(dir $@)
+	$(hide) ln -sf egl/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += \
+    $(EGL_SYMLINK) \
+    $(GLESv2_SYMLINK) \
+    $(Q3DTOOLS_SYMLINK) \
+    $(EGL_64_SYMLINK) \
+    $(GLESv2_64_SYMLINK) \
+    $(Q3DTOOLS_64_SYMLINK)
 
 IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
 IMS_SYMLINKS := $(addprefix $(TARGET_OUT_PRODUCT_APPS_PRIVILEGED)/ims/lib/arm64/,$(notdir $(IMS_LIBS)))
