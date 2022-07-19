@@ -44,7 +44,7 @@ vendor.audio.feature.hdmi_passthrough.enable=true
 vendor.audio.feature.hfp.enable=true
 vendor.audio.feature.hifi_audio.enable=true
 vendor.audio.feature.hwdep_cal.enable=false
-vendor.audio.feature.incall_music.enable=false
+vendor.audio.feature.incall_music.enable=true
 vendor.audio.feature.keep_alive.enable=false
 vendor.audio.feature.kpi_optimize.enable=true
 vendor.audio.feature.maxx_audio.enable=false
@@ -83,6 +83,7 @@ vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
 persist.vendor.camera.preview.ubwc=0
+persist.vendor.camera.stats.test=5
 vendor.video.disable.ubwc=1
 vidc.enc.dcvs.extra-buff-count=2
 
@@ -113,11 +114,17 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 ro.vendor.qti.va_aosp.support=1
 
 # IMS
+persist.dbg.ims_volte_enable=1
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
 persist.dbg.wfc_avail_ovr=1
 
 # Media
+media.stagefright.enable-aac=true
+media.stagefright.enable-http=true
+media.stagefright.enable-player=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-scan=true
 debug.stagefright.omx_default_rank.sw-audio=1
 debug.stagefright.omx_default_rank=0
 media.stagefright.thumbnail.prefer_hw_codecs=true
@@ -128,17 +135,24 @@ vendor.vidc.enc.disable.pq=true
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 
+# Qcom
+qemu.hw.mainkeys=0
+
 # Radio
-persist.radio.multisim.config=dsds
+persist.radio.multisim.config=ssss
 persist.vendor.data.iwlan.enable=true
 persist.vendor.data.mode=concurrent
 persist.vendor.radio.apm_sim_not_pwdn=1
 persist.vendor.radio.atfwd.start=true
 persist.vendor.radio.custom_ecc=1
 persist.vendor.radio.data_con_rprt=1
+persist.vendor.radio.enable_temp_dds=true
+persist.vendor.radio.procedure_bytes=SKIP
 persist.vendor.radio.rat_on=combine
+persist.vendor.radio.redir_party_num=1
+persist.vendor.radio.report_codec=1
 persist.vendor.radio.sib16_support=1
-ro.telephony.default_network=22,22
+ro.telephony.default_network=22
 ro.vendor.use_data_netmgrd=true
 
 # Sensor
