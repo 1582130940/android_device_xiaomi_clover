@@ -146,6 +146,9 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
 
+# Security patch level
+VENDOR_SECURITY_PATCH := 2019-04-01
+
 # SELinux
 include device/qcom/sepolicy-legacy-um/SEPolicy.mk
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
