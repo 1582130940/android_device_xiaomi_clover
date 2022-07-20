@@ -42,6 +42,8 @@ soc_id=`cat /sys/devices/soc0/soc_id 2> /dev/null`
 esoc_name=`cat /sys/bus/esoc/devices/esoc0/esoc_name 2> /dev/null`
 
 target=`getprop ro.board.platform`
+product=`getprop ro.product.name`
+product=${product:(-4)}
 
 if [ -f /sys/class/android_usb/f_mass_storage/lun/nofua ]; then
 	echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
@@ -68,7 +70,11 @@ if [ "$(getprop persist.vendor.usb.config)" == "" -a \
                   *)
 		  case "$soc_machine" in
 		    "SA")
-	              setprop persist.vendor.usb.config diag,adb
+			if [ "$product" == "gvmq" ]; then
+				setprop persist.vendor.usb.config adb
+			else
+				setprop persist.vendor.usb.config diag,adb
+			fi
 		    ;;
 		    *)
 	            case "$target" in
@@ -76,7 +82,11 @@ if [ "$(getprop persist.vendor.usb.config)" == "" -a \
 	                  setprop persist.vendor.usb.config diag,serial_cdev,serial_tty,rmnet_ipa,mass_storage,adb
 		      ;;
 	              "msm8909")
-		          setprop persist.vendor.usb.config diag,serial_smd,rmnet_qti_bam,adb
+			    if [ -d /config/usb_gadget ]; then
+				    setprop persist.vendor.usb.config diag,serial_cdev,rmnet,adb
+			    else
+				    setprop persist.vendor.usb.config diag,serial_smd,rmnet_qti_bam,adb
+			    fi
 		      ;;
 	              "msm8937")
 			    if [ -d /config/usb_gadget ]; then
@@ -150,15 +160,12 @@ fi
 
 # check configfs is mounted or not
 if [ -d /config/usb_gadget ]; then
-	product_string=`cat /config/usb_gadget/g1/strings/0x409/product` 2> /dev/null
-	if [ "product_string" == "" ]; then
-		# Chip-serial is used for unique MSM identification in Product string
-		msm_serial=`cat /sys/devices/soc0/serial_number`;
-		msm_serial_hex=`printf %08X $msm_serial`
-		machine_type=`cat /sys/devices/soc0/machine`
-		product_string="$machine_type-$soc_hwplatform _SN:$msm_serial_hex"
-		echo "$product_string" > /config/usb_gadget/g1/strings/0x409/product
-	fi
+	# Chip-serial is used for unique MSM identification in Product string
+	msm_serial=`cat /sys/devices/soc0/serial_number`;
+	msm_serial_hex=`printf %08X $msm_serial`
+	machine_type=`cat /sys/devices/soc0/machine`
+	product_string="$machine_type-$soc_hwplatform _SN:$msm_serial_hex"
+	echo "$product_string" > /config/usb_gadget/g1/strings/0x409/product
 
 	# ADB requires valid iSerialNumber; if ro.serialno is missing, use dummy
 	serialnumber=`cat /config/usb_gadget/g1/strings/0x409/serialnumber 2> /dev/null`
