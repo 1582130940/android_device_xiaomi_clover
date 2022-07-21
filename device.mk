@@ -333,11 +333,6 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.xiaomi_sdm660 \
     lights.sdm660
 
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service-sdm \
-    vendor.lineage.livedisplay@2.0-service-sysfs
-
 # Media
 PRODUCT_PACKAGES += \
     libavservices_minijail \
