@@ -63,6 +63,9 @@ function blob_fixup() {
         vendor/bin/mlipayd@1.1)
            "${PATCHELF}" --remove-needed vendor.xiaomi.hardware.mtdservice@1.0.so "${2}"
             ;;
+        vendor/lib/libFaceGrade.so)
+           "${PATCHELF}" --remove-needed libandroid.so "${2}"
+            ;;
         vendor/lib/libmmcamera_ppeiscore.so)
            "${PATCHELF}" --replace-needed "libgui.so" "libgui_vendor.so" "${2}"
             ;;
