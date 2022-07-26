@@ -163,6 +163,7 @@ PRODUCT_BOOT_JARS += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     libbluetooth_audio_session \
+    libbthost_if.vendor \
     vendor.qti.hardware.bluetooth_sar@1.0 \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.fm@1.0.vendor
