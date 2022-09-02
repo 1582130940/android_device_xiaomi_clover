@@ -437,7 +437,7 @@ vendor/firmware/cpp_firmware_v1_5_2.fw
 vendor/firmware/cpp_firmware_v1_6_0.fw
 vendor/firmware/cpp_firmware_v1_8_0.fw
 
-# Charger - from lavender
+# Charger - from DDV_sprout
 vendor/bin/hvdcp_opti
 
 # CNE - from lavender
