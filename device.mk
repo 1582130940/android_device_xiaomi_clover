@@ -178,14 +178,15 @@ PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/task_profiles_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
 # Display
+$(call inherit-product, $(LOCAL_PATH)/qcom-caf/display/display-commonsys-intf/config/display-interfaces-product.mk)
+$(call inherit-product, $(LOCAL_PATH)/qcom-caf/display/display-commonsys-intf/config/display-product-system.mk)
+
 PRODUCT_PACKAGES += \
     gralloc.sdm660 \
     hwcomposer.sdm660 \
     memtrack.sdm660 \
-    libdisplayconfig \
-    libtinyxml \
-    libqdMetaData \
-    libqdMetaData.system
+    libgralloc.qti \
+    libtinyxml
 
 PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0 \
@@ -198,6 +199,12 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service \
     vendor.display.config@1.16.vendor \
     vendor.display.config@2.0.vendor
+
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.display.allocator@4.0.vendor \
+    vendor.qti.hardware.display.composer@2.1.vendor \
+    vendor.qti.hardware.display.composer@3.1.vendor \
+    vendor.qti.hardware.display.mapperextensions@1.2.vendor
 
 # Display Device Config
 PRODUCT_COPY_FILES += \
