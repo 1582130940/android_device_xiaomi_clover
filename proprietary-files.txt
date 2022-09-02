@@ -894,7 +894,7 @@ vendor/lib64/libqti-utils.so
 vendor/lib64/vendor.qti.hardware.iop@1.0.so
 vendor/lib64/vendor.qti.hardware.iop@2.0.so
 
-# Peripheral - from lavender
+# Peripheral - from DDV_sprout
 vendor/bin/pm-proxy
 vendor/bin/pm-service
 vendor/lib64/libperipheral_client.so
