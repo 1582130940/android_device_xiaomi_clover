@@ -422,9 +422,15 @@ vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so
 vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so
 vendor/lib64/vendor.qti.hardware.fm@1.0.so
 
-# Bluetooth (aptX) - from lavender
+# Bluetooth (aptX) - from DDV_sprout
+app/aptxals/aptxals.apk
+lib64/libaptXHD_encoder.so
+lib64/libaptX_encoder.so
+product/overlay/aptxalsOverlay.apk
 vendor/lib/rfsa/adsp/capi_v2_aptX_Classic.so
 vendor/lib/rfsa/adsp/capi_v2_aptX_HD.so
+vendor/lib64/libaptXHD_encoder.so
+vendor/lib64/libaptX_encoder.so
 
 # Camera Firmware - from lavender
 vendor/firmware/cpp_firmware_v1_10_0.fw
