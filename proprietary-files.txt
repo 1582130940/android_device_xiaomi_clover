@@ -1194,9 +1194,9 @@ vendor/lib64/libscveObjectTracker.so
 vendor/lib64/vendor.qti.hardware.scve.objecttracker@1.0.so
 vendor/lib64/vendor.qti.hardware.scve.panorama@1.0.so
 
-# Sensors - from lavender
-product/framework/vendor.qti.hardware.sensorscalibrate-V1.0-java.jar:system_ext/framework/vendor.qti.hardware.sensorscalibrate-V1.0-java.jar
-product/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so:system_ext/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so
+# Sensors - from DDV_sprout
+system_ext/framework/vendor.qti.hardware.sensorscalibrate-V1.0-java.jar
+system_ext/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so
 vendor/bin/sensors.qti
 vendor/lib/libsensor1.so
 vendor/lib64/libsensor1.so
