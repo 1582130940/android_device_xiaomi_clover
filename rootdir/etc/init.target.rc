@@ -145,22 +145,6 @@ service vendor.qseecomd /vendor/bin/qseecomd
    user root
    group root
 
-service adsprpcd_root /vendor/bin/adsprpcd
-   class main
-   user media
-   group media
-
-service adsprpcd /vendor/bin/adsprpcd audiopd
-   class main
-   user media
-   group media
-
-service vendor.cdsprpcd /vendor/bin/cdsprpcd
-   class main
-   user system
-   group system
-   disabled
-
 service vendor-sensor-sh /vendor/bin/init.qcom.sensors.sh
     class core
     user root
