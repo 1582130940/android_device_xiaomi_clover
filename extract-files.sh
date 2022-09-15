@@ -78,6 +78,11 @@ function blob_fixup() {
         system_ext/etc/init/perfservice.rc)
             sed -i 's|/system/bin/|/system_ext/bin/|g' "${2}"
             ;;
+        system_ext/lib64/lib-imsvideocodec.so)
+            for LIBIMSVT_SHIM in $(grep -L "libimsvt_shim.so" "${2}"); do
+                "${PATCHELF}" --add-needed "libimsvt_shim.so" "${LIBIMSVT_SHIM}"
+            done
+            ;;
         vendor/lib/hw/camera.sdm660.so)
             for LIBCAMERA_SDM660_SHIM in $(grep -L "libcamera_sdm660_shim.so" "${2}"); do
                 "${PATCHELF}" --add-needed "libcamera_sdm660_shim.so" "$LIBCAMERA_SDM660_SHIM"
