@@ -58,9 +58,6 @@ function blob_fixup() {
         product/etc/permissions/vendor.qti.hardware.data.connection-V1.0-java.xml | product/etc/permissions/vendor.qti.hardware.data.connection-V1.1-java.xml)
             sed -i 's/version="2.0"/version="1.0"/g' "${2}"
             ;;
-        system_ext/etc/init/perfservice.rc)
-            sed -i 's|/system/bin/|/system_ext/bin/|g' "${2}"
-            ;;
         system_ext/lib64/lib-imsvideocodec.so)
             for LIBIMSVT_SHIM in $(grep -L "libimsvt_shim.so" "${2}"); do
                 "${PATCHELF}" --add-needed "libimsvt_shim.so" "${LIBIMSVT_SHIM}"
