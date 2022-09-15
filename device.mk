@@ -428,6 +428,7 @@ PRODUCT_COPY_FILES += \
 
 # Shims
 PRODUCT_PACKAGES += \
+    libimsvt_shim \
     libcamera_sdm660_shim
 
 # Thermal
