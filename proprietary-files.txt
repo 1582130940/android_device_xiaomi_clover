@@ -793,20 +793,20 @@ vendor/lib/liblistensoundmodel2.so
 vendor/lib/libmulawdec.so
 vendor/lib/libsmwrapper.so
 
-# Media - from lavender
-lib/extractors/libmmparserextractor.so
-lib/libavenhancements.so
+# Media - from DDV_sprout
 lib/libFileMux.so
 lib/libOmxMux.so
-lib/libmmosal.so
-lib/libmmparser_lite.so
-lib/libqct_resampler.so
-lib64/extractors/libmmparserextractor.so
-lib64/libavenhancements.so
 lib64/libFileMux.so
 lib64/libOmxMux.so
-lib64/libmmosal.so
-lib64/libmmparser_lite.so
+system_ext/lib/extractors/libmmparserextractor.so
+system_ext/lib/libavenhancements.so
+system_ext/lib/libmmosal.so
+system_ext/lib/libmmparser_lite.so
+system_ext/lib/libqct_resampler.so
+system_ext/lib64/extractors/libmmparserextractor.so
+system_ext/lib64/libavenhancements.so
+system_ext/lib64/libmmosal.so
+system_ext/lib64/libmmparser_lite.so
 vendor/lib/libAlacSwDec.so
 vendor/lib/libApeSwDec.so
 vendor/lib/libFlacSwDec.so
@@ -823,15 +823,22 @@ vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxG711Dec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxVideoDSMode.so
+vendor/lib/libOmxVpp.so
 vendor/lib/libOmxWmaDec.so
 vendor/lib/libdsd2pcm.so
-vendor/lib/libgpustats.so
 vendor/lib/libmm-color-convertor.so
-vendor/lib/libmmosal_proprietary.so
+vendor/lib/libmmosal.so
+vendor/lib/libmmsw_detail_enhancement.so
+vendor/lib/libmmsw_math.so
+vendor/lib/libmmsw_opencl.so
+vendor/lib/libmmsw_platform.so
 vendor/lib/libmulawdec.so
 vendor/lib/libstagefright_soft_qtiflacdec.so
-vendor/lib/libvqzip.so
-vendor/lib64/libgpustats.so
+vendor/lib/libvpphvx.so
+vendor/lib/libvpplibrary.so
+vendor/lib/vendor.qti.hardware.vpp@1.1.so
+vendor/lib/vendor.qti.hardware.vpp@1.2.so
+vendor/lib64/libmmosal.so
 
 # Mlipay - from lavender
 vendor/bin/mlipayd@1.1
