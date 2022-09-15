@@ -1262,5 +1262,5 @@ vendor/firmware/widevine.b06
 vendor/firmware/widevine.b07
 vendor/firmware/widevine.mdt
 
-# WiFi - from lavender
+# WiFi - from DDV_sprout
 vendor/bin/cnss-daemon
