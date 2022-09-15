@@ -1226,12 +1226,12 @@ vendor/firmware/soter64.b06
 vendor/firmware/soter64.b07
 vendor/firmware/soter64.mdt
 
-# Thermal - from lavender
+# Thermal - from DDV_sprout
 vendor/bin/thermal-engine
+vendor/etc/init/init_thermal-engine.rc
 vendor/lib/libthermalclient.so
 vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalfeature.so
-vendor/lib64/libthermalioctl.so
 
 # Time - from lavender
 vendor/app/TimeService/TimeService.apk
