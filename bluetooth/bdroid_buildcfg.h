@@ -1,6 +1,8 @@
 /*
+ *
  *  Copyright (c) 2013, The Linux Foundation. All rights reserved.
- *  Not a Contribution.
+ *  Not a Contribution, Apache license notifications and license are retained
+ *  for attribution purposes only.
  *
  * Copyright (C) 2012 The Android Open Source Project
  *
@@ -27,5 +29,6 @@
 // skips conn update at conn completion
 #define BT_CLEAN_TURN_ON_DISABLED 1
 
+/* Increasing SEPs to 12 from 6 to support SHO/MCast i.e. two streams per codec */
 #define AVDT_NUM_SEPS 35
 #endif
