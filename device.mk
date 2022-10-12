@@ -94,12 +94,26 @@ PRODUCT_PACKAGES += \
     libvolumelistener
 
 PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio@4.0-impl \
+    android.hardware.audio@5.0-impl \
+    android.hardware.audio@2.0-util \
+    android.hardware.audio@4.0-util \
+    android.hardware.audio@5.0-util \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.audio.effect@4.0-impl \
+    android.hardware.audio.effect@5.0-impl \
+    android.hardware.audio.effect@2.0-util \
+    android.hardware.audio.effect@4.0-util \
+    android.hardware.audio.effect@5.0-util
+
+PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.1.vendor \
     android.hardware.bluetooth.a2dp@1.0-impl \
     android.hardware.bluetooth.a2dp@1.0-service \
     android.hardware.bluetooth.audio@2.0-impl \
     audio.bluetooth.default \
-    vendor.qti.hardware.bluetooth_audio@2.0.vendor
+    vendor.qti.hardware.bluetooth_audio@2.1.vendor
 
 PRODUCT_PACKAGES += \
     liba2dpoffload \
