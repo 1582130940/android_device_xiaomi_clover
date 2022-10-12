@@ -81,7 +81,8 @@ vendor.audio_hal.period_size=192
 vendor.voice.path.for.pcm.voip=true
 
 # Bluetooth
-vendor.qcom.bluetooth.soc=cherokee
+persist.vendor.qcom.bluetooth.soc=cherokee
+ro.vendor.bluetooth.wipower=false
 
 # Camera
 persist.camera.HAL3.enabled=1

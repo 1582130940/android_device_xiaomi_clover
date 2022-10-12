@@ -94,7 +94,7 @@ PRODUCT_PACKAGES += \
     libvolumelistener
 
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0.vendor \
+    android.hardware.bluetooth@1.1.vendor \
     android.hardware.bluetooth.a2dp@1.0-impl \
     android.hardware.bluetooth.a2dp@1.0-service \
     android.hardware.bluetooth.audio@2.0-impl \
@@ -152,7 +152,8 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.btconfigstore@1.0.vendor
+    vendor.qti.hardware.btconfigstore@1.0.vendor \
+    vendor.qti.hardware.btconfigstore@2.0.vendor
 
 # Camera
 PRODUCT_PACKAGES += \
