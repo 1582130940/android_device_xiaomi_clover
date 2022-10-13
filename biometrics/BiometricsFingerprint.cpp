@@ -263,14 +263,6 @@ fingerprint_device_t* getFingerprintDevice()
         return fp_device;
     }
 
-    fp_device = getDeviceForVendor("goodix");
-    if (fp_device == nullptr) {
-        ALOGE("Failed to load goodix fingerprint module");
-    } else {
-        setFpVendorProp("goodix");
-        return fp_device;
-    }
-
     setFpVendorProp("none");
 
     return nullptr;

@@ -1,28 +1,23 @@
 # Biometric
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.xiaomi_sdm660   u:object_r:hal_fingerprint_sdm660_exec:s0
 
+# DT2W
+/sys/devices/soc/c177000.i2c/i2c-3/3-005d/enable_dt2w                                                   u:object_r:sysfs_touchpanel:s0
+/sys/devices/soc/c177000.i2c/i2c-3/3-0038/enable_dt2w                                                   u:object_r:sysfs_touchpanel:s0
+/proc/touchscreen/enable_dt2w                                                                           u:object_r:sysfs_touchpanel:s0
+
 # Fingerprint
-/data/gf_data(/.*)?                             u:object_r:fingerprintd_data_file:s0
 /data/vendor/fpc(/.*)?                          u:object_r:fingerprint_vendor_data_file:s0
-/data/vendor/gf_data(/.*)?                      u:object_r:fingerprint_vendor_data_file:s0
-/data/vendor/goodix(/.*)?                       u:object_r:fingerprint_vendor_data_file:s0
-/dev/goodix_fp                                  u:object_r:fingerprint_device:s0
 
 # Firmware
-/firmware                                       u:object_r:firmware_file:s0
-/bt_firmware                                    u:object_r:bt_firmware_file:s0
+/firmware(/.*)?                                 u:object_r:firmware_file:s0
+/bt_firmware(/.*)?                              u:object_r:bt_firmware_file:s0
+/mnt/vendor/persist(/.*)?                       u:object_r:mnt_vendor_file:s0
 
 # Hexagon DSP-side executable needed for Halide operation
 # This is labeled as public_adsprpcd_file as it needs to be read by apps
 # (e.g. Google Camera App)
 /mnt/vendor/dsp/fastrpc_shell_3                 u:object_r:public_adsprpcd_file:s0
-
-# IR
-/dev/lirc0                                      u:object_r:spidev_device:s0
-/dev/spidev7.1                                  u:object_r:spidev_device:s0
-
-# IR HAL
-/(vendor|system/vendor)/bin/hw/android\.hardware\.ir@1\.0-service\.xiaomi_sdm660                        u:object_r:hal_ir_default_exec:s0
 
 # Light HAL
 /(vendor|system/vendor)/bin/hw/android\.hardware\.light@2\.0-service\.xiaomi_sdm660                     u:object_r:hal_light_default_exec:s0

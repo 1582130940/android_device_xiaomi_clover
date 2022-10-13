@@ -25,7 +25,7 @@ namespace {
 
 #define LEDS(x) PPCAT(/sys/class/leds, x)
 #define LCD_ATTR(x) STRINGIFY(PPCAT(LEDS(lcd-backlight), x))
-#define WHITE_ATTR(x) STRINGIFY(PPCAT(LEDS(white), x))
+#define RED_ATTR(x) STRINGIFY(PPCAT(LEDS(red), x))
 #define BUTTON_ATTR(x) STRINGIFY(PPCAT(LEDS(button-backlight), x))
 #define BUTTON1_ATTR(x) STRINGIFY(PPCAT(LEDS(button-backlight1), x))
 
@@ -112,7 +112,7 @@ Light::Light() {
                    << kDefaultMaxScreenBrightness;
     }
 
-    if (ReadFileToString(WHITE_ATTR(max_brightness), &buf)) {
+    if (ReadFileToString(RED_ATTR(max_brightness), &buf)) {
         max_led_brightness_ = std::stoi(buf);
     } else {
         max_led_brightness_ = kDefaultMaxLedBrightness;
@@ -189,10 +189,10 @@ void Light::setLightNotification(Type type, const LightState& state) {
 }
 
 void Light::applyNotificationState(const LightState& state) {
-    uint32_t white_brightness = RgbaToBrightness(state.color, max_led_brightness_);
+    uint32_t red_brightness = RgbaToBrightness(state.color, max_led_brightness_);
 
     // Turn off the leds (initially)
-    WriteToFile(WHITE_ATTR(blink), 0);
+    WriteToFile(RED_ATTR(blink), 0);
 
     if (state.flashMode == Flash::TIMED && state.flashOnMs > 0 && state.flashOffMs > 0) {
         /*
@@ -210,15 +210,15 @@ void Light::applyNotificationState(const LightState& state) {
         LOG(DEBUG) << __func__ << ": color=" << std::hex << state.color << std::dec
                    << " onMs=" << state.flashOnMs << " offMs=" << state.flashOffMs;
 
-        // White
-        WriteToFile(WHITE_ATTR(start_idx), 0);
-        WriteToFile(WHITE_ATTR(duty_pcts), GetScaledDutyPcts(white_brightness));
-        WriteToFile(WHITE_ATTR(pause_lo), static_cast<uint32_t>(state.flashOffMs));
-        WriteToFile(WHITE_ATTR(pause_hi), static_cast<uint32_t>(pause_hi));
-        WriteToFile(WHITE_ATTR(ramp_step_ms), static_cast<uint32_t>(step_duration));
-        WriteToFile(WHITE_ATTR(blink), 1);
+        // Red
+        WriteToFile(RED_ATTR(start_idx), 0);
+        WriteToFile(RED_ATTR(duty_pcts), GetScaledDutyPcts(red_brightness));
+        WriteToFile(RED_ATTR(pause_lo), static_cast<uint32_t>(state.flashOffMs));
+        WriteToFile(RED_ATTR(pause_hi), static_cast<uint32_t>(pause_hi));
+        WriteToFile(RED_ATTR(ramp_step_ms), static_cast<uint32_t>(step_duration));
+        WriteToFile(RED_ATTR(blink), 1);
     } else {
-        WriteToFile(WHITE_ATTR(brightness), white_brightness);
+        WriteToFile(RED_ATTR(brightness), red_brightness);
     }
 }
 
