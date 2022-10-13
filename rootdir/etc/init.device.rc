@@ -75,6 +75,12 @@ on boot
     chown system system /sys/class/power_supply/battery/charging_enabled
     chown system system /sys/class/power_supply/battery/constant_charge_current_max
 
+    # Start qcrild
+    start vendor.qcrild
+    start vendor.qcrild2
+    start vendor.dataqti
+    start vendor.dataadpl
+
 on post-fs-data
     # Fingerprint
     mkdir /persist/qti_fp 0700 system system
