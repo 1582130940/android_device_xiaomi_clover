@@ -27,6 +27,11 @@
 #
 #
 
+on early-init
+    # Workarround for cache
+    rm /data/resource-cache
+    rm /data/system/package_cache
+
 on boot
     # Fingerprint
     chmod 0660 /sys/devices/soc/soc:fpc1020/compatible_all
