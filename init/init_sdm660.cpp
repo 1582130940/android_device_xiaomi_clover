@@ -34,12 +34,17 @@
 #include <sys/sysinfo.h>
 #include <unistd.h>
 
+#include <android-base/file.h>
+#include <android-base/logging.h>
 #include <android-base/properties.h>
+#include <android-base/strings.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
+
+using android::base::GetProperty;
 
 char const *heapstartsize;
 char const *heapgrowthlimit;
@@ -75,8 +80,8 @@ void check_device()
         heapstartsize = "8m";
         heapgrowthlimit = "192m";
         heapsize = "512m";
-        heaptargetutilization = "0.75";
-        heapminfree = "512k";
+        heaptargetutilization = "0.7";
+        heapminfree = "4m";
         heapmaxfree = "8m";
     }
 }
@@ -92,8 +97,55 @@ void property_override(char const prop[], char const value[], bool add = true)
     }
 }
 
+void property_overrride_triple(char const product_prop[], char const system_prop[],
+        char const vendor_prop[], char const value[])
+{
+    property_override(product_prop, value);
+    property_override(system_prop, value);
+    property_override(vendor_prop, value);
+}
+
+void check_clover()
+{
+    std::string proc_cmdline;
+    android::base::ReadFileToString("/proc/cmdline", &proc_cmdline, true);
+    LOG(INFO) << "CMDLINE_INFO: " << proc_cmdline;
+
+    if (proc_cmdline.find("10wu") != proc_cmdline.npos) {
+        property_override("persist.sys.fp.vendor", "fpc");
+        property_override("ro.sf.lcd_density", "265");
+        property_overrride_triple("ro.product.device", "ro.product.system.device", "ro.product.vendor.device", "MI PAD 4 PLUS");
+        property_overrride_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "MI PAD 4 PLUS");
+        property_override("persist.vendor.audio.calfile0","/vendor/etc/acdbdata/QRD/sdm660-snd-card-d9p/QRD_D9P_Bluetooth_cal.acdb");
+        property_override("persist.vendor.audio.calfile1","/vendor/etc/acdbdata/QRD/sdm660-snd-card-d9p/QRD_D9P_General_cal.acdb");
+        property_override("persist.vendor.audio.calfile2","/vendor/etc/acdbdata/QRD/sdm660-snd-card-d9p/QRD_D9P_Global_cal.acdb");
+        property_override("persist.vendor.audio.calfile3","/vendor/etc/acdbdata/QRD/sdm660-snd-card-d9p/QRD_D9P_Handset_cal.acdb");
+        property_override("persist.vendor.audio.calfile4","/vendor/etc/acdbdata/QRD/sdm660-snd-card-d9p/QRD_D9P_Hdmi_cal.acdb");
+        property_override("persist.vendor.audio.calfile5","/vendor/etc/acdbdata/QRD/sdm660-snd-card-d9p/QRD_D9P_Headset_cal.acdb");
+        property_override("persist.vendor.audio.calfile6","/vendor/etc/acdbdata/QRD/sdm660-snd-card-d9p/QRD_D9P_Speaker_cal.acdb");
+        property_override("persist.vendor.audio.calfile7","/vendor/etc/acdbdata/QRD/sdm660-snd-card-d9p/QRD_D9P_workspaceFile.qwsp");
+        property_override("persist.vendor.audio.calfile8","/vendor/etc/acdbdata/adsp_avs_config.acdb");
+    } else {
+        property_override("persist.sys.fp.vendor", "none");
+        property_override("ro.sf.lcd_density", "320");
+        property_overrride_triple("ro.product.device", "ro.product.system.device", "ro.product.vendor.device", "MI PAD 4");
+        property_overrride_triple("ro.product.model", "ro.product.system.model", "ro.product.vendor.model", "MI PAD 4");
+        property_override("persist.vendor.audio.calfile0","/vendor/etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Bluetooth_cal.acdb");
+        property_override("persist.vendor.audio.calfile1","/vendor/etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_General_cal.acdb");
+        property_override("persist.vendor.audio.calfile2","/vendor/etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Global_cal.acdb");
+        property_override("persist.vendor.audio.calfile3","/vendor/etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Handset_cal.acdb");
+        property_override("persist.vendor.audio.calfile4","/vendor/etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Hdmi_cal.acdb");
+        property_override("persist.vendor.audio.calfile5","/vendor/etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Headset_cal.acdb");
+        property_override("persist.vendor.audio.calfile6","/vendor/etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_Speaker_cal.acdb");
+        property_override("persist.vendor.audio.calfile7","/vendor/etc/acdbdata/QRD/sdm660-snd-card-skush/QRD_SKUSH_workspaceFile.qwsp");
+        property_override("persist.vendor.audio.calfile8","/vendor/etc/acdbdata/adsp_avs_config.acdb");
+    }
+}
+
 void vendor_load_properties()
 {
+    check_clover();
+    property_overrride_triple("ro.product.name", "ro.product.system.name", "ro.product.vendor.name", "clover");
     check_device();
 
     property_override("dalvik.vm.heapstartsize", heapstartsize);
