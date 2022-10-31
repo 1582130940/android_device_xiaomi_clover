@@ -58,12 +58,6 @@ function blob_fixup() {
         product/etc/permissions/vendor.qti.hardware.data.connection-V1.0-java.xml | product/etc/permissions/vendor.qti.hardware.data.connection-V1.1-java.xml)
             sed -i 's/version="2.0"/version="1.0"/g' "${2}"
             ;;
-        system_ext/etc/permissions/telephonyservice.xml | system_ext/etc/permissions/com.qualcomm.qti.imscmservice-V2.0-java.xml | system_ext/etc/permissions/com.qualcomm.qti.imscmservice-V2.1-java.xml | system_ext/etc/permissions/com.qualcomm.qti.imscmservice-V2.2-java.xml)
-            sed -i "s|/system/product/framework/|/system/system_ext/framework/|g" "${2}"
-            ;;
-        system_ext/etc/permissions/qcrilhook.xml)
-            sed -i 's|/product/framework/qcrilhook.jar|/system_ext/framework/qcrilhook.jar|g' "${2}"
-            ;;
         system_ext/etc/permissions/audiosphere.xml)
             sed -i 's|/system/framework/|/system_ext/framework/|g' "${2}"
             ;;
