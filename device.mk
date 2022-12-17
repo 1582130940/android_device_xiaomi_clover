@@ -235,14 +235,13 @@ PRODUCT_COPY_FILES += \
 
 # GPS / Location
 $(call inherit-product, $(LOCAL_PATH)/gps/gps_vendor_product.mk)
+$(call inherit-product, $(LOCAL_PATH)/location/gps_vendor_product.mk)
 
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.1.vendor \
     android.hardware.gnss@2.1.vendor \
     android.hardware.gnss.measurement_corrections@1.1.vendor \
     android.hardware.gnss.visibility_control@1.0.vendor \
-    libgnsspps \
-    libsynergy_loc_api \
     libsensorndkbridge \
     libwifi-hal-ctrl
 
