@@ -80,5 +80,5 @@
     </array>
     <item name="bluetooth.active">134</item>
     <item name="bluetooth.on">0.6</item>
-    <item name="bluetooth.controller.voltage">3700</item>
+    <item name="bluetooth.controller.voltage">3300</item>
 </device>
