@@ -156,6 +156,10 @@ PRODUCT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 # Treble
 BOARD_VNDK_VERSION := current
 
+# Verity
+# Only needed for signing
+BOARD_AVB_ENABLE := false
+
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211
