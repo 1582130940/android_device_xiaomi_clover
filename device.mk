@@ -117,8 +117,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.1.vendor \
-    android.hardware.bluetooth.a2dp@1.0-impl \
-    android.hardware.bluetooth.a2dp@1.0-service \
     android.hardware.bluetooth.audio-impl \
     audio.bluetooth.default \
     vendor.qti.hardware.bluetooth_audio@2.1.vendor
@@ -204,10 +202,6 @@ PRODUCT_PACKAGES += \
     gralloc.sdm660 \
     hwcomposer.sdm660 \
     memtrack.sdm660 \
-    libdisplayconfig \
-    libdisplayconfig.qti \
-    libgralloc.qti \
-    libqdMetaData \
     libtinyxml
 
 PRODUCT_PACKAGES += \
@@ -420,8 +414,7 @@ PRODUCT_COPY_FILES += \
 
 # QMI
 PRODUCT_PACKAGES += \
-    libjson \
-    libjson.vendor
+    libjson
 
 # RIL
 PRODUCT_PACKAGES += \
