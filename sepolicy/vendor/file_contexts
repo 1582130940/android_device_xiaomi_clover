@@ -1,5 +1,5 @@
 # Biometric
-/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.xiaomi_sdm660   u:object_r:hal_fingerprint_sdm660_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service\.xiaomi          u:object_r:hal_fingerprint_default_exec:s0
 
 # DT2W
 /sys/devices/soc/c177000.i2c/i2c-3/3-005d/enable_dt2w                                                   u:object_r:sysfs_touchpanel:s0
