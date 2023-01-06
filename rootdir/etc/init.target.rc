@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2018, The Linux Foundation. All rights reserved.
+# Copyright (c) 2013-2018, 2020 The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -27,6 +27,14 @@
 #
 #
 
+import /vendor/etc/init/hw/init.target_ota.rc
+
+on early-init
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules audio_apr audio_wglink audio_adsp_loader audio_q6_pdr audio_q6_notifier audio_q6 audio_usf audio_native audio_pinctrl_wcd audio_pinctrl_lpi audio_swr audio_platform audio_hdmi audio_wcd_spi audio_stub audio_digital_cdc audio_analog_cdc audio_msm_sdw audio_wcd_cpe audio_cpe_lsm audio_wcd9335 audio_machine_sdm660 audio_wcd934x audio_mbhc audio_wcd9xxx audio_wcd_core
+    mkdir /firmware 0771 system system
+    mkdir /bt_firmware 0771 system system
+    mkdir /dsp 0771 media media
+
 on init
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
     write /dev/stune/top-app/schedtune.sched_boost_no_override 1
@@ -43,37 +51,29 @@ on init
     chown system system /dev/cpuset/camera-daemon/tasks
     chmod 0664 /dev/cpuset/camera-daemon/tasks
 
-on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-    mount_all /vendor/etc/fstab.qcom
-    swapon_all /vendor/etc/fstab.qcom
-    chown root system /mnt/vendor/persist
-    chmod 0771 /mnt/vendor/persist
-    mkdir /mnt/vendor/persist/data 0700 system system
-    mkdir /mnt/vendor/persist/bms 0700 root system
-    restorecon_recursive /mnt/vendor/persist
-    write /sys/kernel/boot_adsp/boot 1
-
-    mkdir /mnt/vendor/dsp 0770 root root
-    copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3
-    chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3
-    mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind
-
-on post-fs
     start vendor.qseecomd
-    wait_for_prop vendor.sys.listeners.registered true
+
+on early-fs
+    start vold
 
 on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
 on post-fs-data
-    mkdir /data/tombstones/modem 0771 system system
-    mkdir /data/tombstones/lpass 0771 system system
-    mkdir /data/tombstones/wcnss 0771 system system
-    mkdir /data/tombstones/dsps 0771 system system
+    mkdir /data/vendor/tombstones/modem 0771 system system
+    mkdir /data/vendor/tombstones/lpass 0771 system system
+    mkdir /data/vendor/tombstones/wcnss 0771 system system
+    mkdir /data/vendor/tombstones/dsps 0771 system system
+    mkdir /data/vendor/hbtp 0750 system system
+    mkdir /data/vendor/misc/seemp 0700 system system
 
 on early-boot
+    chown system system /mnt/vendor/persist/sensors
+    chown system system /mnt/vendor/persist/sensors/sns.reg
+    chown system system /mnt/vendor/persist/sensors/sensors_settings
+    chmod 0664 /mnt/vendor/persist/sensors/sensors_settings
     write /dev/ipa 1
 
 on boot
@@ -110,11 +110,16 @@ on boot
     setprop vendor.usb.rmnet.inst.name "rmnet"
     setprop vendor.usb.dpl.inst.name "dpl"
     setprop vendor.usb.qdss.inst.name "qdss"
-    write /sys/module/usb_f_qcrndis/parameters/rndis_dl_max_xfer_size 15916
+    setprop vendor.usb.controller a800000.dwc3
     setprop sys.usb.configfs 1
+    write /sys/module/usb_f_qcrndis/parameters/rndis_dl_max_xfer_size 15916
 
-    # Touchpanel
-    chown system system /sys/touchpanel/double_tap
+on boot && property:persist.vendor.usb.controller.default=*
+    setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
+
+on property:vendor.usb.controller=*
+    setprop sys.usb.controller ${vendor.usb.controller}
+    write /sys/module/usb_f_qcrndis/parameters/rndis_dl_max_xfer_size 15916
 
 #Peripheral manager
 service vendor.per_mgr /system/vendor/bin/pm-service
@@ -165,6 +170,17 @@ service vendor.cdsprpcd /vendor/bin/cdsprpcd
    group system
    disabled
 
+service vendor-sensor-sh /vendor/bin/init.qcom.sensors.sh
+    class core
+    user root
+    oneshot
+
+service vendor.sensors.qti /vendor/bin/sensors.qti
+    class core
+    user system
+    group system
+    disabled
+
 service energy-awareness /system/vendor/bin/energy-awareness
     class main
     user system
@@ -202,8 +218,9 @@ on property:init.svc.zygote=restarting
 on charger
     start qcom-post-boot
     start vendor.hvdcp_opti
+    setprop vendor.usb.controller a800000.dwc3
     setprop sys.usb.configfs 1
-    start power_off_alarm
+    start vendor.power_off_alarm
 
 service vendor.hvdcp_opti /system/vendor/bin/hvdcp_opti
      class main

@@ -285,6 +285,7 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.recovery.qcom.rc \
     init.target.rc \
+    init.target_ota.rc \
     ueventd.qcom.rc
 
 # IRQ
