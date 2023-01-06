@@ -9,23 +9,31 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.audio</name>
-        <version>7.1</version>
+        <version>7.0-1</version>
         <interface>
             <name>IDevicesFactory</name>
             <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-        <name>android.hardware.bluetooth.a2dp</name>
-        <version>1.0</version>
+        <name>android.hardware.biometrics.fingerprint</name>
+        <version>2.0-3</version>
         <interface>
-            <name>IBluetoothAudioOffload</name>
+            <name>IBiometricsFingerprint</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.bluetooth.audio</name>
+        <version>1-2</version>
+        <interface>
+            <name>IBluetoothAudioProviderFactory</name>
             <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.bluetooth.audio</name>
-        <version>2.0</version>
+        <version>2.0-1</version>
         <interface>
             <name>IBluetoothAudioProvidersFactory</name>
             <instance>default</instance>
@@ -37,6 +45,13 @@
         <interface>
             <name>IMediaCasService</name>
             <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.drm</name>
+        <interface>
+            <name>IDrmFactory</name>
+            <instance>clearkey</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -72,6 +87,21 @@
         </interface>
     </hal>
     <hal format="aidl" optional="true">
+        <name>android.hardware.light</name>
+        <version>1-2</version>
+        <interface>
+            <name>ILights</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.memtrack</name>
+        <interface>
+            <name>IMemtrack</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
         <name>android.hardware.power</name>
         <interface>
             <name>IPower</name>
@@ -80,7 +110,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.radio.config</name>
-        <version>1.0-1</version>
+        <version>1.0-2</version>
         <interface>
             <name>IRadioConfig</name>
             <instance>default</instance>
@@ -88,7 +118,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.radio</name>
-        <version>1.0-4</version>
+        <version>1.0-5</version>
         <interface>
             <name>ISap</name>
             <instance>slot2</instance>
@@ -100,12 +130,11 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-        <name>android.hardware.secure_element</name>
-        <version>1.0-2</version>
+        <name>android.hardware.soundtrigger</name>
+        <version>2.0-1</version>
         <interface>
-            <name>ISecureElement</name>
-            <instance>SIM1</instance>
-            <instance>SIM2</instance>
+            <name>ISoundTriggerHw</name>
+            <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -116,11 +145,25 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi.hostapd</name>
+        <interface>
+            <name>IHostapd</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.wifi.hostapd</name>
         <version>1.0-3</version>
         <interface>
             <name>IHostapd</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.wifi.supplicant</name>
+        <interface>
+            <name>ISupplicant</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -134,7 +177,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.wifi</name>
-        <version>1.0-5</version>
+        <version>1.0-6</version>
         <interface>
             <name>IWifi</name>
             <instance>default</instance>
@@ -246,14 +289,6 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-        <name>vendor.qti.esepowermanager</name>
-        <version>1.0</version>
-        <interface>
-            <name>IEsePowerManager</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
         <name>vendor.qti.gnss</name>
         <version>1.0-2</version>
         <version>2.0-1</version>
@@ -274,7 +309,7 @@
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.bluetooth_audio</name>
-        <version>2.0</version>
+        <version>2.0-1</version>
         <interface>
             <name>IBluetoothAudioProvidersFactory</name>
             <instance>default</instance>
@@ -414,6 +449,14 @@
             <name>IImsRadio</name>
             <instance>imsradio0</instance>
             <instance>imsradio1</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.radio.internal.deviceinfo</name>
+        <version>1.0</version>
+        <interface>
+            <name>IDeviceInfo</name>
+            <instance>deviceinfo</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
