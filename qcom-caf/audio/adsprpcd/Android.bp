@@ -1,10 +1,9 @@
-soong_namespace {
-}
-
 cc_binary {
     name: "audioadsprpcd",
 
     srcs: ["adsprpcd.c"],
+
+    header_libs: ["libfastrpcshippable_headers"],
 
     shared_libs: [
         "liblog",

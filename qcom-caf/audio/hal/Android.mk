@@ -70,8 +70,13 @@ ifneq ($(filter msmnile sdmshrike,$(TARGET_BOARD_PLATFORM)),)
   LOCAL_CFLAGS += -DINCALL_MUSIC_ENABLED
   LOCAL_CFLAGS += -DINCALL_STEREO_CAPTURE_ENABLED
 endif
-ifneq ($(filter kona lahaina,$(TARGET_BOARD_PLATFORM)),)
+ifneq ($(filter kona,$(TARGET_BOARD_PLATFORM)),)
   LOCAL_CFLAGS := -DPLATFORM_KONA
+  LOCAL_CFLAGS += -DMAX_TARGET_SPECIFIC_CHANNEL_CNT="4"
+  LOCAL_CFLAGS += -DINCALL_STEREO_CAPTURE_ENABLED
+endif
+ifneq ($(filter lahaina,$(TARGET_BOARD_PLATFORM)),)
+  LOCAL_CFLAGS := -DPLATFORM_LAHAINA
   LOCAL_CFLAGS += -DMAX_TARGET_SPECIFIC_CHANNEL_CNT="4"
   LOCAL_CFLAGS += -DINCALL_STEREO_CAPTURE_ENABLED
 endif
@@ -119,6 +124,14 @@ endif
 
 ifeq ($(TARGET_BOARD_AUTO),true)
   LOCAL_CFLAGS += -DPLATFORM_AUTO
+endif
+
+ifeq ($(TARGET_SUPPORTS_WEARABLES),true)
+   LOCAL_CFLAGS += -DENABLE_HFP_CALIBRATION
+endif
+
+ifeq ($(strip $(AUDIO_FEATURE_ENABLED_DAEMON_SUPPORT)), true)
+  LOCAL_CFLAGS += -DDAEMON_SUPPORT_AUTO
 endif
 
 LOCAL_CFLAGS += -Wno-macro-redefined
@@ -359,16 +372,11 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_AHAL_EXT)),true)
     LOCAL_SHARED_LIBRARIES += vendor.qti.hardware.audiohalext@1.0
 endif
 
-ifeq ($(strip $(AUDIO_FEATURE_ENABLED_EXT_AMPLIFIER)),true)
-    LOCAL_CFLAGS += -DEXT_AMPLIFIER_ENABLED
-    LOCAL_SRC_FILES += audio_extn/audio_amplifier.c
-    LOCAL_SHARED_LIBRARIES += libhardware
-endif
-
 LOCAL_CFLAGS += -D_GNU_SOURCE
 LOCAL_CFLAGS += -Wall -Werror
 
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+LOCAL_COPY_HEADERS_TO   := mm-audio
+LOCAL_COPY_HEADERS      := audio_extn/audio_defs.h
 
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_GCOV)),true)
     LOCAL_CFLAGS += --coverage -fprofile-arcs -ftest-coverage
@@ -377,18 +385,10 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_GCOV)),true)
 endif
 
 LOCAL_SHARED_LIBRARIES += libbase libhidlbase libutils android.hardware.power@1.2 liblog
-
-LOCAL_SHARED_LIBRARIES += android.hardware.power-V1-ndk
-LOCAL_SHARED_LIBRARIES += libbinder_ndk
-
 LOCAL_SRC_FILES += audio_perf.cpp
 
 ifeq ($(strip $(AUDIO_FEATURE_ENABLED_FM_TUNER_EXT)),true)
     LOCAL_CFLAGS += -DFM_TUNER_EXT_ENABLED
-endif
-
-ifneq ($(QCPATH),)
-    PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)/adsprpcd
 endif
 
 LOCAL_MODULE := audio.primary.$(TARGET_BOARD_PLATFORM)
