@@ -354,6 +354,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <ctl name="MultiMedia10 Mixer INT3_MI2S_TX" value="0" />
     <ctl name="MultiMedia10 Mixer SLIM_7_TX" value="0" />
     <ctl name="MultiMedia10 Mixer USB_AUDIO_TX" value="0" />
+    <ctl name="INT4_MI2S_RX Audio Mixer MultiMedia10" value="0" />
     <ctl name="PRI_MI2S_RX Audio Mixer MultiMedia10" value="0" />
     <ctl name="INT0_MI2S_RX Audio Mixer MultiMedia10" value="0" />
     <ctl name="SLIMBUS_7_RX Audio Mixer MultiMedia10" value="0" />
