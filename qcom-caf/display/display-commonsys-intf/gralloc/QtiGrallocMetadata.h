@@ -1,6 +1,8 @@
 /*
  * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
  *
+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
  * met:
@@ -64,7 +66,13 @@
 #define QTI_RGB_DATA_ADDRESS 10023
 #define QTI_COLORSPACE 10024
 #define QTI_YUV_PLANE_INFO 10025
-
+// Indicates buffer access permission of its client
+#define QTI_BUFFER_PERMISSION 10026
+#define QTI_MEM_HANDLE 10027
+#define QTI_TIMED_RENDERING 10028
+#define QTI_CUSTOM_CONTENT_METADATA 10029
+// Video transcode metadata stat
+#define QTI_VIDEO_TRANSCODE_STATS 10030
 // Used to indicate to framework that internal definitions are used instead
 #define COMPRESSION_QTI_UBWC 20001
 #define INTERLACED_QTI 20002
@@ -161,6 +169,13 @@ struct VideoHistogramMetadata {
   uint32_t reserved[12];
 };
 
+#define VIDEO_TRANSCODE_STATS_SIZE 128 //32 payloads with 4 bytes each: 4x32 = 128
+#define VIDEO_TRANSCODE_PAYLOAD_NUM 32
+struct VideoTranscodeStatsMetadata {
+  uint32_t stats_info[VIDEO_TRANSCODE_PAYLOAD_NUM];   /* Transcode stats payload */
+  uint32_t stat_len;                                  /* Full payload size in bytes */
+};
+
 #define VIDEO_TIMESTAMP_INFO_SIZE 16
 struct VideoTimestampInfo {
   uint32_t enable;               /* Enable video timestamp info */
@@ -184,13 +199,22 @@ struct qti_ycbcr {
   uint32_t chromaStep;
 };
 
-/* Color Space Macros */
-#define HAL_CSC_ITU_R_601 0
-#define HAL_CSC_ITU_R_601_FR 1
-#define HAL_CSC_ITU_R_709 2
-#define HAL_CSC_ITU_R_2020 3
-#define HAL_CSC_ITU_R_2020_FR 4
-#define HAL_CSC_ITU_R_709_FR 5
+enum BufferClient {
+  BUFFER_CLIENT_INVALID = -1,
+  BUFFER_CLIENT_DPU = 0,
+  BUFFER_CLIENT_UNTRUSTED_VM = 1,
+  BUFFER_CLIENT_TRUSTED_VM = 2,
+  BUFFER_CLIENT_MAX,
+};
+
+union BufferPermission {
+  struct {
+    uint8_t read : 1;
+    uint8_t write : 1;
+    uint8_t execute : 1;
+  };
+  uint8_t permission;
+};
 
 #define METADATA_SET_SIZE 512
 

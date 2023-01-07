@@ -194,7 +194,10 @@ PRODUCT_PACKAGES += \
     gralloc.sdm660 \
     hwcomposer.sdm660 \
     memtrack.sdm660 \
+    libdisplayconfig \
+    libdisplayconfig.qti \
     libgralloc.qti \
+    libqdMetaData \
     libtinyxml
 
 PRODUCT_PACKAGES += \
