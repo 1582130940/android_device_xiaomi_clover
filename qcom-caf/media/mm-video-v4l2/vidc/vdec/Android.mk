@@ -3,7 +3,7 @@ include $(CLEAR_VARS)
 include $(LIBION_HEADER_PATH_WRAPPER)
 
 # ---------------------------------------------------------------------------------
-#                      Common definitons
+# 				Common definitons
 # ---------------------------------------------------------------------------------
 
 libmm-vdec-def := -D__alignx\(x\)=__attribute__\(\(__aligned__\(x\)\)\)
@@ -82,18 +82,19 @@ include $(CLEAR_VARS)
 # Common Includes
 libmm-vdec-inc          := $(LOCAL_PATH)/inc
 libmm-vdec-inc          += $(LIBION_HEADER_PATHS)
-libmm-vdec-inc          += $(call project-path-for,qcom-media)/mm-video-v4l2/vidc/common/inc
-libmm-vdec-inc          += $(call project-path-for,qcom-media)/mm-core/inc
+libmm-vdec-inc          += $(TOP)/hardware/qcom/media/mm-video-v4l2/vidc/common/inc
+libmm-vdec-inc          += $(TOP)/hardware/qcom/media/mm-core/inc
+libmm-vdec-inc          += $(TARGET_OUT_HEADERS)/qcom/display
 libmm-vdec-inc          += $(TARGET_OUT_HEADERS)/adreno
-libmm-vdec-inc          += $(call project-path-for,qcom-media)/libc2dcolorconvert
-libmm-vdec-inc          += $(call project-path-for,qcom-media)/hypv-intercept
+libmm-vdec-inc          += $(TOP)/hardware/qcom/media/libc2dcolorconvert
+libmm-vdec-inc          += $(TOP)/hardware/qcom/media/hypv-intercept
 libmm-vdec-inc          += $(TARGET_OUT_HEADERS)/mm-video/SwVdec
 libmm-vdec-inc          += $(TARGET_OUT_HEADERS)/mm-video/swvdec
 libmm-vdec-inc          += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 
 ifeq ($(PLATFORM_SDK_VERSION), 18)  #JB_MR2
 libmm-vdec-def += -DANDROID_JELLYBEAN_MR2=1
-libmm-vdec-inc += $(call project-path-for,qcom-media)/libstagefrighthw
+libmm-vdec-inc += $(TOP)/hardware/qcom/media/libstagefrighthw
 endif
 
 # Common Dependencies
@@ -122,7 +123,7 @@ libmm-vdec-def += -DMAX_H264_LEVEL_52
 endif
 
 # Hypervisor
-ifneq (,$(filter $(MACHINE), "8x96autogvmquin" "8x96autogvmred"))
+ifeq ($(ENABLE_HYP),true)
 libmm-vdec-def += -D_HYPERVISOR_
 endif
 # ---------------------------------------------------------------------------------
@@ -147,7 +148,7 @@ LOCAL_C_INCLUDES                += $(libmm-vdec-inc)
 LOCAL_ADDITIONAL_DEPENDENCIES   := $(libmm-vdec-add-dep)
 
 LOCAL_PRELINK_MODULE    := false
-LOCAL_SHARED_LIBRARIES  := liblog libcutils libdl libqdutils
+LOCAL_SHARED_LIBRARIES  := liblog libcutils libdl libqdutils libion
 
 LOCAL_SHARED_LIBRARIES  += libqdMetaData libhypv_intercept
 
@@ -187,7 +188,7 @@ LOCAL_C_INCLUDES              += $(libmm-vdec-inc)
 LOCAL_ADDITIONAL_DEPENDENCIES := $(libmm-vdec-add-dep)
 
 LOCAL_PRELINK_MODULE          := false
-LOCAL_SHARED_LIBRARIES        := liblog libcutils
+LOCAL_SHARED_LIBRARIES        := liblog libcutils libion
 LOCAL_SHARED_LIBRARIES        += libswvdec
 
 LOCAL_SRC_FILES               := src/omx_swvdec.cpp

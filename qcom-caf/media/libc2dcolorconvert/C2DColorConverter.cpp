@@ -90,7 +90,7 @@ private:
     LINK_c2dUnMapAddr mC2DUnMapAddr;
 
     void *mAdrenoUtilsHandle;
-    LINK_adreno_compute_fmt_aligned_width_and_height mAdrenoComputeFmtAlignedWidthAndHeight;
+    LINK_AdrenoComputeAlignedWidthAndHeight mAdrenoComputeAlignedWidthAndHeight;
 
     uint32_t mSrcSurface, mDstSurface;
     void * mSrcSurfaceDef;
@@ -155,8 +155,8 @@ C2DColorConverter::C2DColorConverter(size_t srcWidth, size_t srcHeight, size_t d
          return;
      }
 
-    mAdrenoComputeFmtAlignedWidthAndHeight = (LINK_adreno_compute_fmt_aligned_width_and_height)dlsym(mAdrenoUtilsHandle, "compute_fmt_aligned_width_and_height");
-    if (!mAdrenoComputeFmtAlignedWidthAndHeight) {
+     mAdrenoComputeAlignedWidthAndHeight = (LINK_AdrenoComputeAlignedWidthAndHeight)dlsym(mAdrenoUtilsHandle, "compute_aligned_width_and_height");
+     if (!mAdrenoComputeAlignedWidthAndHeight) {
          ALOGE("%s: dlsym ERROR", __FUNCTION__);
          mError = -1;
          return;
@@ -333,7 +333,6 @@ void* C2DColorConverter::getDummySurfaceDef(ColorConvertFormat format, size_t wi
 
         if (format == YCbCr420P ||
             format == YCrCb420P) {
-          printf("half stride for Cb Cr planes \n");
           surfaceDef->stride1 = calcStride(format, width) / 2;
           surfaceDef->phys2 = (void *)0xaaaaaaaa;
           surfaceDef->stride2 = calcStride(format, width) / 2;
@@ -508,23 +507,15 @@ size_t C2DColorConverter::calcSize(ColorConvertFormat format, size_t width, size
     switch (format) {
         case RGB565:
             bpp = 2;
-            mAdrenoComputeFmtAlignedWidthAndHeight(width, height,
-                                                   0, ADRENO_PIXELFORMAT_B5G6R5,
-                                                   1, tile_mode, raster_mode,
-                                                   padding_threshold,
-                                                   &alignedw, &alignedh);
-            ALOGV("%s: alignedw %d alignedh %d", __FUNCTION__,alignedw, alignedh);
+            mAdrenoComputeAlignedWidthAndHeight(width, height, bpp, tile_mode, raster_mode, padding_threshold,
+                                                &alignedw, &alignedh);
             size = alignedw * alignedh * bpp;
             size = ALIGN(size, ALIGN4K);
             break;
         case RGBA8888:
             bpp = 4;
-            mAdrenoComputeFmtAlignedWidthAndHeight(width, height,
-                                                   0, ADRENO_PIXELFORMAT_R8G8B8A8 ,
-                                                   1, tile_mode, raster_mode,
-                                                   padding_threshold,
-                                                   &alignedw, &alignedh);
-            ALOGV("%s: alignedw %d alignedh %d", __FUNCTION__,alignedw, alignedh);
+            mAdrenoComputeAlignedWidthAndHeight(width, height, bpp, tile_mode, raster_mode, padding_threshold,
+                                                &alignedw, &alignedh);
             if (mSrcStride)
               size = mSrcStride *  alignedh * bpp;
             else
@@ -721,7 +712,6 @@ int32_t C2DColorConverter::dumpOutput(char * filename, char mode) {
 
       if (mDstFormat == YCbCr420P ||
           mDstFormat == YCrCb420P) {
-          printf("Dump Cb and Cr separately for Planar\n");
           //dump Cb/Cr
           base = (uint8_t *)dstSurfaceDef->plane1;
           stride = dstSurfaceDef->stride1;
@@ -757,10 +747,6 @@ int32_t C2DColorConverter::dumpOutput(char * filename, char mode) {
       stride = dstSurfaceDef->stride;
       sliceHeight = dstSurfaceDef->height;
 
-      printf("rgb surface base is %p", base);
-      printf("rgb surface dumpsslice height is %lu\n", (unsigned long)sliceHeight);
-      printf("rgb surface dump stride is %lu\n", (unsigned long)stride);
-
       int bpp = 1; //bytes per pixel
       if (mDstFormat == RGB565) {
         bpp = 2;
@@ -772,7 +758,6 @@ int32_t C2DColorConverter::dumpOutput(char * filename, char mode) {
       for (size_t i = 0; i < sliceHeight; i++) {
         ret = write(fd, base, mDstWidth*bpp);
         if (ret < 0) {
-          printf("write failed, count = %d\n", count);
           goto cleanup;
         }
         base += stride;
