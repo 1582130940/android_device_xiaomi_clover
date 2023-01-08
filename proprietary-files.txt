@@ -316,7 +316,13 @@ vendor/lib64/com.fingerprints.extension@1.0.so
 vendor/lib64/libqfp-service.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
 
-# ADSP - from DDV_sprout
+# ADSP - from S62Pro
+system_ext/lib/libcdsprpc_system.so
+system_ext/lib64/libadsprpc_system.so
+system_ext/lib64/libcdsprpc_system.so
+system_ext/lib64/libmdsprpc_system.so
+system_ext/lib64/libsdsprpc_system.so
+system_ext/lib64/vendor.qti.hardware.dsp@1.0.so
 vendor/bin/adsprpcd
 vendor/bin/cdsprpcd
 vendor/bin/dspservice
@@ -331,6 +337,7 @@ vendor/lib/libadsprpc.so
 vendor/lib/libcdsp_default_listener.so
 vendor/lib/libcdsprpc.so
 vendor/lib/libfastcrc.so
+vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
 vendor/lib/libfastrpc_utf_stub.so
 vendor/lib/libmdsprpc.so
@@ -342,6 +349,7 @@ vendor/lib64/libadsprpc.so
 vendor/lib64/libcdsp_default_listener.so
 vendor/lib64/libcdsprpc.so
 vendor/lib64/libfastcrc.so
+vendor/lib64/libfastcvadsp_stub.so
 vendor/lib64/libfastcvopt.so
 vendor/lib64/libfastrpc_utf_stub.so
 vendor/lib64/libmdsprpc.so
@@ -349,16 +357,20 @@ vendor/lib64/libsdsprpc.so
 vendor/lib64/libsysmon_cdsp_skel.so
 vendor/lib64/vendor.qti.hardware.dsp@1.0.so
 
-# ADSP Modules - from DDV_sprout
+# ADSP Modules - from S62Pro
 vendor/lib/rfsa/adsp/libFastRPC_AUE_Forward_skel.so
 vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_800h_skel.so
 vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_Qtc2_skel.so
-vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_Rohm_skel.so
 vendor/lib/rfsa/adsp/libadsp_fd_skel.so
 vendor/lib/rfsa/adsp/libadsp_hvx_add_constant.so
 vendor/lib/rfsa/adsp/libadsp_hvx_skel.so
-vendor/lib/rfsa/adsp/libedge_smooth_skel.so
-vendor/lib/rfsa/adsp/libseemore_hexagon_skel.so
+vendor/lib/rfsa/adsp/libapps_mem_heap.so
+vendor/lib/rfsa/adsp/libdspCV_skel.so
+vendor/lib/rfsa/adsp/libfastcvadsp.so
+vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
+vendor/lib/rfsa/adsp/libhexagon_nn_skel.so
+vendor/lib/rfsa/adsp/libscveObjectSegmentation_skel.so
+vendor/lib/rfsa/adsp/libscveT2T_skel.so
 vendor/lib/rfsa/adsp/libvpp_svc_skel.so
 
 # Alarm - from DDV_sprout
