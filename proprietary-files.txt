@@ -667,7 +667,7 @@ vendor/firmware/cppf.b06
 vendor/firmware/cppf.b07
 vendor/firmware/cppf.mdt
 
-# Factory - from DDV_sprout
+# Factory - from S62Pro
 system_ext/framework/vendor.qti.hardware.factory-V1.0-java.jar
 system_ext/framework/vendor.qti.hardware.factory-V1.1-java.jar
 system_ext/lib64/vendor.qti.hardware.factory@1.0.so
