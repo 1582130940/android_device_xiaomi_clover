@@ -988,7 +988,7 @@ vendor/bin/pm-proxy
 vendor/bin/pm-service
 vendor/lib64/libperipheral_client.so
 
-# Postprocessing - from DDV_sprout
+# Postprocessing - from S62Pro
 etc/permissions/com.qti.snapdragon.sdk.display.xml
 framework/com.qti.snapdragon.sdk.display.jar
 lib64/libsdm-disp-apis.so
