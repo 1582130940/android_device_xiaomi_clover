@@ -933,7 +933,7 @@ vendor/etc/init/vendor.xiaomi.hardware.mlipay@1.1-service.rc
 vendor/lib64/libmlipay.so
 vendor/lib64/libmlipay@1.1.so
 
-# Perf - from DDV_sprout
+# Perf - from S62Pro
 framework/QPerformance.jar
 framework/UxPerformance.jar
 system_ext/bin/perfservice
@@ -955,7 +955,6 @@ system_ext/lib64/libqti_performance.so
 system_ext/lib64/libqti_workloadclassifiermodel.so
 system_ext/lib64/vendor.qti.hardware.iop@2.0.so
 vendor/bin/hw/vendor.qti.hardware.perf@2.2-service
-vendor/bin/msm_irqbalance
 vendor/etc/init/vendor.qti.hardware.perf@2.2-service.rc
 vendor/etc/perf/commonresourceconfigs.xml
 vendor/etc/perf/commonsysnodesconfigs.xml
