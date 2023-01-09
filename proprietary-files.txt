@@ -860,7 +860,7 @@ vendor/lib64/libgcs.so
 vendor/lib64/libjnihelper.so
 vendor/lib64/liblistensoundmodel2.so
 
-# Media - from DDV_sprout
+# Media - from S62Pro
 lib/libFileMux.so
 lib/libOmxMux.so
 lib64/libFileMux.so
@@ -892,6 +892,7 @@ vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxVideoDSMode.so
 vendor/lib/libOmxVpp.so
 vendor/lib/libOmxWmaDec.so
+vendor/lib/libUBWC.so
 vendor/lib/libdsd2pcm.so
 vendor/lib/libmm-color-convertor.so
 vendor/lib/libmmosal.so
@@ -901,11 +902,30 @@ vendor/lib/libmmsw_opencl.so
 vendor/lib/libmmsw_platform.so
 vendor/lib/libmulawdec.so
 vendor/lib/libstagefright_soft_qtiflacdec.so
+vendor/lib/libstreamparser.so
 vendor/lib/libvpphvx.so
 vendor/lib/libvpplibrary.so
 vendor/lib/vendor.qti.hardware.vpp@1.1.so
 vendor/lib/vendor.qti.hardware.vpp@1.2.so
+vendor/lib64/libAlacSwDec.so
+vendor/lib64/libApeSwDec.so
+vendor/lib64/libFlacSwDec.so
+vendor/lib64/libI420colorconvert.so
+vendor/lib64/libOmxAacDec.so
+vendor/lib64/libOmxAlacDec.so
+vendor/lib64/libOmxAlacDecSw.so
+vendor/lib64/libOmxAmrDec.so
+vendor/lib64/libOmxAmrwbplusDec.so
+vendor/lib64/libOmxApeDec.so
+vendor/lib64/libOmxApeDecSw.so
+vendor/lib64/libOmxEvrcDec.so
+vendor/lib64/libOmxG711Dec.so
+vendor/lib64/libOmxQcelp13Dec.so
+vendor/lib64/libOmxWmaDec.so
+vendor/lib64/libUBWC.so
+vendor/lib64/libmm-color-convertor.so
 vendor/lib64/libmmosal.so
+vendor/lib64/libstreamparser.so
 
 # Mlipay - from lavender
 vendor/bin/mlipayd@1.1
