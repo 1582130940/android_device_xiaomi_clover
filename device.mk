@@ -189,6 +189,7 @@ PRODUCT_COPY_FILES += \
 # Display
 $(call inherit-product, $(LOCAL_PATH)/qcom-caf/display/display-commonsys-intf/config/display-interfaces-product.mk)
 $(call inherit-product, $(LOCAL_PATH)/qcom-caf/display/display-commonsys-intf/config/display-product-system.mk)
+$(call inherit-product, $(LOCAL_PATH)/qcom-caf/display/display-commonsys/config/display-product-commonsys.mk)
 
 PRODUCT_PACKAGES += \
     gralloc.sdm660 \
