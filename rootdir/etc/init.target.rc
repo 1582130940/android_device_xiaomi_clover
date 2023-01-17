@@ -145,16 +145,10 @@ service vendor.qseecomd /vendor/bin/qseecomd
    user root
    group root
 
-service vendor-sensor-sh /vendor/bin/init.qcom.sensors.sh
-    class core
-    user root
-    oneshot
-
 service vendor.sensors.qti /vendor/bin/sensors.qti
     class core
     user system
     group system
-    disabled
 
 service energy-awareness /system/vendor/bin/energy-awareness
     class main
