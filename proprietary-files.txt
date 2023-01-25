@@ -5,7 +5,6 @@
 
 # Amplifier - from clover
 vendor/firmware/tas2557s_uCDSP.bin
-vendor/firmware/tas2557s_uCDSP_d9p.bin
 
 # ACDB - from clover
 vendor/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
