@@ -80,9 +80,7 @@ DEVICE_SPECIFIC_DISPLAY_PATH := $(DEVICE_PATH)/qcom-caf/display
 TARGET_TAP_TO_WAKE_NODE := "/proc/touchscreen/enable_dt2w"
 
 # FM
-BOARD_HAVE_QCOM_FM := true
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
-BOARD_HAS_QCA_FM_SOC := cherokee
 
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
