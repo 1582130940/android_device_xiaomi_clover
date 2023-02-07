@@ -8,8 +8,9 @@
 
 set -e
 
-export DEVICE=platina
+export DEVICE=clover
 export DEVICE_COMMON=sdm660-common
 export VENDOR=xiaomi
+export VENDOR_COMMON=${VENDOR}
 
-"./../../${VENDOR}/${DEVICE_COMMON}/setup-makefiles.sh" "$@"
+"./../../${VENDOR_COMMON}/${DEVICE_COMMON}/setup-makefiles.sh" "$@"
