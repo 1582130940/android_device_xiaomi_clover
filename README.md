@@ -1,27 +1,26 @@
-The Xiaomi Mi 8 Lite (codenamed _"platina"_) is a mid-range smartphone from Xiaomi announced in March 2018.
+The Xiaomi Mi Pad 4/4 Plus (codenamed _"clover"_) is a mid-range smarttablet from Xiaomi announced in June 2018.
 
 ## Device specifications
 
-| Device                  | Xiaomi Mi 8 Lite                                            |
+| Device                  | Xiaomi Mi Pad 4/4 Plus                                      |
 | ----------------------- | :---------------------------------------------------------- |
 | SoC                     | Qualcomm SDM660 Snapdragon 660                              |
 | CPU                     | 8x Qualcomm® Kryo™ 260 CPU                                  |
 | GPU                     | Adreno 512                                                  |
-| Memory                  | 4GB / 6GB RAM (LPDDR4X)                                     |
+| Memory                  | 3GB / 4GB RAM (LPDDR4X)                                     |
 | Shipped Android version | 8.1.0                                                       |
-| Storage                 | 64GB / 128GB eMMC 5.1 flash storage                         |
+| Storage                 | 32GB / 64GB / 128GB eMMC 5.1 flash storage                  |
 | MicroSD                 | Up to 256 GB                                                |
-| Battery                 | Non-removable Li-Po 3350 mAh                                |
-| Dimensions              | 156.4 x 75.8 x 7.5 mm                                       |
-| Display                 | 2280 x 1080 (19:9), 6.26 inch                               |
-| Rear camera 1           | 12 MP, f/1.9, 1/2.55", 1.4µm, dual pixel PDAF               |
-| Rear camera 2           | 5 MP, f/2.2, 1.12µm, depth sensor                           |
-| Front camera 1          | 24 MP, f/2.0, 1.8µm                                         |
+| Battery                 | Non-removable Li-Po 6010 / 8620 mAh                         |
+| Dimensions              | 200.2 x 120.3 x 7.9 mm / 245.6 x 149.08 x 7.99 mm           |
+| Display                 | 1920 x 1200 (16:10), 8.0 / 10.1 inch                        |
+| Rear camera             | 13 MP, f/2.0                                                |
+| Front camera            | 5 MP, f/2.0                                                 |
 
 
 ## Device picture
 
-![Xiaomi Mi 8 Lite](http://ask-fd.zol-img.com.cn/g5/M00/01/07/ChMkJlv2fVaIcCdUAAA_3fbzsx8AAtT_wBUBrgAAD_1288.jpg)
+![Xiaomi Mi Pad 4/4 Plus](https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-mi-pad-4-1.jpg)
 
 ## Copyright
 

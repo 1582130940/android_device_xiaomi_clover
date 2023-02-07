@@ -7,36 +7,40 @@
 # Inherit from sdm660-common
 include device/xiaomi/sdm660-common/BoardConfigCommon.mk
 
-DEVICE_PATH := device/xiaomi/platina
+DEVICE_PATH := device/xiaomi/clover
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := platina
+TARGET_OTA_ASSERT_DEVICE := clover
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 2280
-TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1200
 
 # Build
 BUILD_BROKEN_DUP_RULES := true
 
 # Display
-TARGET_SCREEN_DENSITY := 440
+TARGET_SCREEN_DENSITY := 320
+
+# DT2W
+TARGET_TAP_TO_WAKE_NODE := "/proc/touchscreen/enable_dt2w"
 
 # Kernel
-TARGET_KERNEL_CONFIG += vendor/xiaomi/platina.config
+TARGET_KERNEL_CONFIG := clover_defconfig
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
-BOARD_VENDORIMAGE_PARTITION_SIZE := 838860800
+BOARD_VENDORIMAGE_PARTITION_SIZE := 2147483648
 
 # Properties
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2020-08-01
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # SELinux
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
@@ -45,4 +49,4 @@ BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/manifest.xml
 
 # Inherit the proprietary files
-include vendor/xiaomi/platina/BoardConfigVendor.mk
+include vendor/xiaomi/clover/BoardConfigVendor.mk

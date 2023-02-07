@@ -6,6 +6,22 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+function blob_fixup() {
+    case "${1}" in
+        vendor/lib/hw/camera.sdm660.so)
+            for LIBCAMERA_SDM660_SHIM in $(grep -L "libcamera_sdm660_shim.so" "${2}"); do
+                "${PATCHELF}" --add-needed "libcamera_sdm660_shim.so" "$LIBCAMERA_SDM660_SHIM"
+            done
+            ;;
+        vendor/lib/libmmcamera_bokeh.so | vendor/lib/libmmcamera_ppeiscore.so)
+           "${PATCHELF}" --replace-needed "libgui.so" "libgui_vendor.so" "${2}"
+            ;;
+        vendor/lib/vendor.qti.hardware.fingerprint@1.0.so | vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so)
+            "${PATCHELF}" --remove-needed "android.hidl.base@1.0.so" "${2}"
+            ;;
+    esac
+}
+
 # If we're being sourced by the common script that we called,
 # stop right here. No need to go down the rabbit hole.
 if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
@@ -14,8 +30,9 @@ fi
 
 set -e
 
-export DEVICE=platina
+export DEVICE=clover
 export DEVICE_COMMON=sdm660-common
 export VENDOR=xiaomi
+export VENDOR_COMMON=${VENDOR}
 
-"./../../${VENDOR}/${DEVICE_COMMON}/extract-files.sh" "$@"
+"./../../${VENDOR_COMMON}/${DEVICE_COMMON}/extract-files.sh" "$@"
