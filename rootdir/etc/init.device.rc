@@ -32,9 +32,6 @@ on boot
     chmod 0660 /sys/android_camera/sensor
     chown system system /sys/android_camera/sensor
 
-    # Fingerprint
-    chmod 0600 /data/misc/fpc/calibration_image.pndat
-
     # Flash
     chmod 0660 /sys/class/leds/led:flash_0/brightness
     chmod 0660 /sys/class/leds/led:flash_1/brightness
@@ -66,22 +63,43 @@ on boot
     # Power supply
     chmod 0660 /sys/class/power_supply/battery/input_suspend
     chmod 0660 /sys/class/power_supply/battery/charging_enabled
+    chmod 0660 /sys/class/power_supply/battery/constant_charge_current_max
     chown system system /sys/class/power_supply/battery/input_suspend
     chown system system /sys/class/power_supply/battery/charging_enabled
+    chown system system /sys/class/power_supply/battery/constant_charge_current_max
 
-    # Thermal
-    chmod 0770 /sys/class/power_supply/battery/device/thermalcall
-    chown system system /sys/class/power_supply/battery/device/thermalcall
+    # DT2W
+    chmod 0660 /proc/touchscreen/enable_dt2w
+    chown system system /proc/touchscreen/enable_dt2w
 
-    # Enable camera read sensors data
-    setprop persist.camera.gyro.disable 0
+    # Radio
+    setprop persist.radio.multisim.config ssss
 
 on post-fs-data
-    mkdir /persist/qti_fp 0700 system system
-    mkdir /mnt/vendor/persist/fpc 0770 system system	
-    copy /data/vendor/fpc/user.db /data/vendor_de/0/fpdata/user.db	
-    chown system system /data/vendor_de/0/fpdata/user.db	
+    mkdir /data/vendor/camera 0770 camera camera
+    mkdir /data/misc/camera 0770 camera camera
 
 # Workaround for camera HAL can not read sys property
 on property:sys.camera.face.unlock=*
     setprop vendor.camera.face.unlock ${sys.camera.face.unlock}
+
+on property:persist.sys.fp.vendor=none
+    mount none /dev/null /vendor/etc/permissions/android.hardware.fingerprint.xml bind
+    mount none /dev/null /vendor/framework/com.fingerprints.extension.jar bind
+    mount none /dev/null /vendor/etc/permissions/com.fingerprints.extension.xml bind
+    mount none /dev/null /vendor/app/FingerprintExtensionService/FingerprintExtensionService.apk bind
+    stop vendor.fps_hal
+
+on property:ro.vendor.radio.noril=yes
+    mount none /dev/null /system/app/CarrierDefaultApp/CarrierDefaultApp.apk bind
+    mount none /dev/null /system/product/app/GoogleContacts/GoogleContacts.apk bind
+    mount none /dev/null /system/product/app/messaging/messaging.apk bind
+    mount none /dev/null /system/product/priv-app/Dialer/Dialer.apk bind
+    mount none /dev/null /system/product/priv-app/GoogleDialer/GoogleDialer.apk bind
+    mount none /dev/null /system/product/priv-app/PrebuiltBugle/PrebuiltBugle.apk bind
+    mount none /dev/null /system/system_ext/priv-app/CarrierConfig/CarrierConfig.apk bind
+    mount none /dev/null /system/priv-app/CallLogBackup/CallLogBackup.apk bind
+    mount none /dev/null /system/priv-app/CellBroadcastLegacyApp/CellBroadcastLegacyApp.apk bind
+    mount none /dev/null /system/priv-app/TeleService/TeleService.apk bind
+    mount none /dev/null /system/system_ext/priv-app/EmergencyInfo/EmergencyInfo.apk bind
+    setprop persist.vendor.data.mode "disabled"
