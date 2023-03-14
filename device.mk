@@ -26,7 +26,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.autofocus.xml
 
 PRODUCT_PACKAGES += \
-    libcamera_sdm660_shim \
+    camera.sdm660 \
     libMegviiFacepp-0.5.2 \
     libmegface \
     libstdc++.vendor
