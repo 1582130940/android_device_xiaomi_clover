@@ -91,10 +91,6 @@ on post-fs-data
     mkdir /data/vendor/camera 0770 camera camera
     mkdir /data/misc/camera 0770 camera camera
 
-# Workaround for camera HAL can not read sys property
-on property:sys.camera.face.unlock=*
-    setprop vendor.camera.face.unlock ${sys.camera.face.unlock}
-
 on property:persist.sys.fp.vendor=none
     mount none /dev/null /vendor/etc/permissions/android.hardware.fingerprint.xml bind
     mount none /dev/null /vendor/framework/com.fingerprints.extension.jar bind

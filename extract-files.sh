@@ -8,11 +8,6 @@
 
 function blob_fixup() {
     case "${1}" in
-        vendor/lib/hw/camera.sdm660.so)
-            for LIBCAMERA_SDM660_SHIM in $(grep -L "libcamera_sdm660_shim.so" "${2}"); do
-                "${PATCHELF}" --add-needed "libcamera_sdm660_shim.so" "$LIBCAMERA_SDM660_SHIM"
-            done
-            ;;
         vendor/lib/libmmcamera_bokeh.so | vendor/lib/libmmcamera_ppeiscore.so)
            "${PATCHELF}" --replace-needed "libgui.so" "libgui_vendor.so" "${2}"
             ;;

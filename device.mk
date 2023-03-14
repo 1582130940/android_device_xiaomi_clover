@@ -29,7 +29,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    libcamera_sdm660_shim \
+    camera.sdm660 \
     libMegviiFacepp-0.5.2 \
     libmegface \
     libstdc++.vendor
