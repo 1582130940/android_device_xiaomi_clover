@@ -39,6 +39,10 @@ PRODUCT_COPY_FILES += \
 # FM
 BOARD_HAVE_QCOM_FM := false
 
+# Folio
+PRODUCT_PACKAGES += \
+    folio_daemon
+
 # IR
 BOARD_HAVE_IR := false
 

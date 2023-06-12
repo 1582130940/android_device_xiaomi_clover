@@ -75,6 +75,11 @@ on boot
     # Radio
     setprop persist.radio.multisim.config ssss
 
+service folio_daemon /system/bin/folio_daemon
+    class late_start
+    user root
+    group root
+
 on post-fs-data
     mkdir /data/vendor/camera 0770 camera camera
     mkdir /data/misc/camera 0770 camera camera
@@ -103,3 +108,9 @@ on property:ro.vendor.radio.noril=yes
     mount none /dev/null /system/priv-app/TeleService/TeleService.apk bind
     mount none /dev/null /system/system_ext/priv-app/EmergencyInfo/EmergencyInfo.apk bind
     setprop persist.vendor.data.mode "disabled"
+
+on property:init.svc.zygote=running
+    start folio_daemon
+
+on property:init.svc.zygote=stopped
+    stop folio_daemon
