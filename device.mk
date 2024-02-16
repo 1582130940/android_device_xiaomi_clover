@@ -32,7 +32,7 @@ PRODUCT_PACKAGES += \
     camera.sdm660 \
     libMegviiFacepp-0.5.2 \
     libmegface \
-    libstdc++.vendor
+    libstdc++_vendor
 
 # Display calibration
 PRODUCT_COPY_FILES += \
