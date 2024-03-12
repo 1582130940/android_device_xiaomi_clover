@@ -4827,11 +4827,11 @@ int32_t QCamera2HardwareInterface::configureHDRBracketing()
             tmp.append(",");
     }
 
-    if( !tmp.isEmpty() &&
+    if( !tmp.empty() &&
         ( MAX_EXP_BRACKETING_LENGTH > tmp.length() ) ) {
         //Trim last comma
         memset(aeBracket.values, '\0', MAX_EXP_BRACKETING_LENGTH);
-        memcpy(aeBracket.values, tmp.string(), tmp.length() - 1);
+        memcpy(aeBracket.values, tmp.c_str(), tmp.length() - 1);
     }
 
     LOGH("HDR config values %s",
