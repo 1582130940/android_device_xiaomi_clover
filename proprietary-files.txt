@@ -1,4 +1,4 @@
-# hon660 package version: 94.00.04, unless stated otherwise
+# hon660 package version: 96.00.02, unless stated otherwise
 # clover package version: 9.8.29, unless stated otherwise
 # jasmine package version: V11.0.28.0.QDIMIXM, unless stated otherwise
 # lavender package version: V12.5.7.0.QFGCNXM, unless stated otherwise
