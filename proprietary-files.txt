@@ -1,4 +1,4 @@
-# hon660 package version: 94.00.04, unless stated otherwise
+# hon660 package version: 96.00.01, unless stated otherwise
 # clover package version: 9.8.29, unless stated otherwise
 # jasmine package version: V11.0.28.0.QDIMIXM, unless stated otherwise
 # lavender package version: V12.5.7.0.QFGCNXM, unless stated otherwise
@@ -359,7 +359,7 @@ vendor/lib64/vendor.qti.hardware.scve.objecttracker@1.0.so
 vendor/lib64/vendor.qti.hardware.scve.panorama@1.0.so
 
 # Sensors - from hon660
--system_ext/framework/vendor.qti.hardware.sensorscalibrate-V1.0-java.jar
+system_ext/framework/vendor.qti.hardware.sensorscalibrate-V1.0-java.jar
 system_ext/lib/vendor.qti.hardware.sensorscalibrate@1.0.so
 system_ext/lib64/vendor.qti.hardware.sensorscalibrate@1.0.so
 vendor/bin/sensors.qti
