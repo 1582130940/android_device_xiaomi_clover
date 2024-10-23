@@ -38,7 +38,7 @@ PRODUCT_COPY_FILES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    com.fingerprints.extension@1.0.vendor
+    com.fingerprints.extension@2.0.vendor
 
 # FM
 BOARD_HAVE_QCOM_FM := false
