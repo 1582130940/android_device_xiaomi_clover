@@ -71,10 +71,6 @@ on boot
     chown system system /sys/class/power_supply/battery/charging_enabled
     chown system system /sys/class/power_supply/battery/constant_charge_current_max
 
-    # DT2W
-    chmod 0660 /proc/touchscreen/enable_dt2w
-    chown system system /proc/touchscreen/enable_dt2w
-
     # Radio
     setprop persist.radio.multisim.config ssss
 
