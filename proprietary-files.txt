@@ -1,3 +1,4 @@
+# helios package version: 14-23-05.00-UG-U00-STD-HEL-04, unless stated otherwise
 # hon660 package version: 96.00.02, unless stated otherwise
 # clover package version: 9.8.29, unless stated otherwise
 # jasmine package version: V11.0.28.0.QDIMIXM, unless stated otherwise
@@ -306,13 +307,11 @@ vendor/etc/goodix_firmware.bin
 # Fingerprint - from clover
 vendor/lib64/hw/fingerprint.fpc.so:vendor/lib64/hw/fingerprint.fpc.default.so
 
-# Gatekeeper - from jasmine
-vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
-
-# Gatekeeper QTI - from hon660
+# Gatekeeper QTI - from helios
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
-vendor/lib/hw/gatekeeper-impl-qti.so:vendor/lib/hw/android.hardware.gatekeeper@1.0-impl-qti.so
-vendor/lib64/hw/gatekeeper-impl-qti.so:vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
+vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
+vendor/lib/hw/android.hardware.gatekeeper@1.0-impl-qti.so
+vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 
 # Graphics Firmware - from lavender
 vendor/firmware/a512_zap.b00
@@ -333,13 +332,13 @@ vendor/firmware/a540_gpmu.fw2
 # Keymaster - from jasmine
 vendor/etc/init/android.hardware.keymaster@3.0-service-qti.rc
 
-# Keymaster QTI - from hon660
+# Keymaster QTI - from helios
 vendor/bin/hw/android.hardware.keymaster@3.0-service-qti
 vendor/bin/hw/android.hardware.keymaster@4.0-service-qti
-vendor/lib/hw/keymaster-impl-qti.so:vendor/lib/hw/android.hardware.keymaster@3.0-impl-qti.so
-vendor/lib64/hw/keymaster-impl-qti.so:vendor/lib64/hw/android.hardware.keymaster@3.0-impl-qti.so
+vendor/lib/hw/android.hardware.keymaster@3.0-impl-qti.so
+vendor/lib64/hw/android.hardware.keymaster@3.0-impl-qti.so
 
-# SCVE - from hon660
+# SCVE - from helios
 vendor/lib/libscveCommon.so
 vendor/lib/libscveCommon_stub.so
 vendor/lib/libscveObjectSegmentation.so
@@ -359,6 +358,8 @@ vendor/lib64/vendor.qti.hardware.scve.panorama@1.0.so
 
 # Sensors - from hon660
 vendor/bin/sensors.qti
+
+# Sensors - from helios
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/libssc_default_listener.so
@@ -372,6 +373,8 @@ vendor/lib64/sensors.ssc.so
 
 # Thermal - from hon660
 vendor/bin/thermal-engine
+
+# Thermal - from helios
 vendor/etc/init/init_thermal-engine.rc
 vendor/lib/libthermalclient.so
 vendor/lib64/libthermalclient.so
